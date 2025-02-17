@@ -81,7 +81,7 @@ def get_video_stats(video_ids):
 
 def get_trivia(stats):
 
-    sort_order = ['12am - 6am','6am - 12pm','12pm - 6pm','6pm - 12am']
+    sort_order = ['00:00 - 05:59','06:00 - 11:59','12:00 - 17:59','18:00 - 23:59']
     metrics = ['engagement_score','viewCount','likeCount','commentCount']
     trivia_dict = {}
     videos_list = []
@@ -105,7 +105,7 @@ def get_trivia(stats):
     stats_df['PublishedHourBin'] = pd.cut(stats_df['PublishedHour'],
                                           bins=[0,6,12,18,24],
                                           include_lowest=True,
-                                          labels=['12am - 6am','6am - 12pm','12pm - 6pm','6pm - 12am'])
+                                          labels=['00:00 - 05:59','06:00 - 11:59','12:00 - 17:59','18:00 - 23:59'])
     
     videos_by_time = pd.DataFrame(stats_df['PublishedHourBin'].value_counts()).reset_index()
     videos_by_time.columns=['PublishedHourBin', 'counts']
