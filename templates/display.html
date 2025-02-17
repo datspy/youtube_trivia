@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<body class="stats-page">
+    <div class="container">
+        <!-- Left Tile: YouTube Thumbnails and Metadata -->
+        <div class="tile left">
+            {% for video in videos %}
+                <div class="video-item">
+                    <iframe width="320" height="180" src="https://www.youtube.com/embed/{{ video.id }}" frameborder="0" allowfullscreen></iframe>
+                    <div class="video-info">
+                        <h4 class="video-type">{{ video.type }}</h4>
+                        <!-- <h2>{{ video.title }}</h2> -->                        
+                        <!-- <p class="stats">{{ video.views }} views • {{ video.likes }} likes • {{ video.comments }} comments</p> -->
+                        <p class="stats">{{ video.text }}</p>                        
+                        <p class="stats">{{ video.scores }}</p>                        
+                        <p class="date">Published On: {{ video.PublishedDate }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Right Tile: Text and Table -->
+        <div class="tile right">
+            <div class="d_container">
+                <div class="date-box">
+                    <p class="label">First Video On</p>
+                    <hr>
+                    <p class="fldate">{{ f_date }}</p>
+                </div>
+                <div class="date-box">
+                    <p class="label">Last Video On</p>
+                    <hr>
+                    <p class="fldate">{{ l_date }}</p>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Publishing Time Window</th>
+                        <th>Video Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in table_data %}
+                        <tr>
+                            <td>{{ row[0] }}</td>
+                            <td>{{ row[1] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

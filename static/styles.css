@@ -1,0 +1,239 @@
+/* Trivia Page */
+.trivia-page {
+    background: url("background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.stats-page {
+    background: url("background.jpg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.trivia-container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 48px;
+    color: #ff0000;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 15px;
+    background: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #cc0000;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    margin: 20px auto;
+    gap: 20px;
+}
+
+/* Tiles */
+.tile {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.right {
+    flex: 1;
+    text-align: center;
+}
+
+/* Video Items */
+.video-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.video-item img {
+    width: 320px;
+    height: 180px;
+    border-radius: 8px;
+}
+
+.video-info {
+    flex: 1;
+}
+
+.video-info h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+/* .video-type {
+    color: white;
+    background-color: rgb(192, 14, 23);
+    padding: 15px 60px;
+    border-radius: 12px;
+    width: 200px;
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+} */
+
+
+.video-type {
+    color: white;
+    background-color: rgb(171, 2, 2);
+    padding: 20px;
+    border-radius: 12px;
+    display: block;
+    width: 250px;
+    text-align: center;
+    font-weight: bold;
+    margin: 20px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative; /* Needed for the arrow positioning */
+}
+
+/* Creating the subtle left arrow */
+.video-type::before {
+    content: "";
+    position: absolute;
+    left: 0px; /* Adjusts how far the arrow extends */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-right: 50px solid white; /* Matches the background color */
+}
+
+
+
+.stats {
+    font-size: 17px;
+    color: #060404;
+    margin: 5px 0;
+}
+
+.date {
+    font-size: 15px;
+    font-weight: bold;
+    color: #3d3c3c;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* Container */
+.d_container {
+    display: flex;
+    gap: 20px;    
+    justify-content: center;
+}
+
+.date-box {
+    width: 250px;
+    padding: 20px;
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Label */
+.label {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Separator */
+hr {
+    border: none;
+    height: 1px;
+    background: #bbb;
+    margin: 10px 0;
+}
+
+/* First And Last Published Date */
+.fldate {
+    font-size: 20px;
+    color: #222;
+}
