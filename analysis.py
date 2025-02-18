@@ -52,6 +52,7 @@ def get_all_video_ids(channel_id):
     
     return video_ids
 
+
 def get_video_stats(video_ids):
     """Fetch statistics for a list of video IDs."""    
 
@@ -79,16 +80,41 @@ def get_video_stats(video_ids):
     return stats
 
 
-def get_trivia(stats):
+def get_channel_stats(channel_id):
+    """Fetch statistics for a Channel ID."""    
+
+    request = youtube.channels().list(
+            part="snippet,contentDetails,statistics",
+            id=channel_id)
+    response = request.execute()
+    channel = response['items'][0]
+
+    channel_stats = {            
+            'title': channel['snippet']['title'],            
+            'thumbnail': channel['snippet']['thumbnails']['default']['url'],
+            'country': channel['snippet'].get('country', 'Not specified'),
+            'viewCount': int(channel['statistics'].get('viewCount', 0)),
+            'subscriberCount': int(channel['statistics'].get('subscriberCount', 0)),
+            'videoCount': int(channel['statistics'].get('videoCount', 0)),
+            }
+          
+    return channel_stats
+
+
+def get_trivia(vid_stats, ch_stats):
 
     sort_order = ['00:00 - 05:59','06:00 - 11:59','12:00 - 17:59','18:00 - 23:59']
     metrics = ['engagement_score','viewCount','likeCount','commentCount']
+    title_description = {'engagement_score': "Most Engaged Video",
+                         'viewCount': "Most Viewed Video",
+                         'likeCount': "Most Liked Video",
+                         'commentCount': "Most Commented Video"
+                         }
     trivia_dict = {}
     videos_list = []
-    sixty_days_date = datetime.now().date()- timedelta(days = 60)
-    
+    sixty_days_date = datetime.now().date()- timedelta(days = 60)    
 
-    df = pd.DataFrame.from_dict(stats)
+    df = pd.DataFrame.from_dict(vid_stats)
     temp = df.transpose()
 
     ### Column Transformations
@@ -117,21 +143,21 @@ def get_trivia(stats):
         trivia_dict[metric] = stats_df.sort_values(by=[metric], ascending=False).head(1).to_dict('records')
 
     ### Channel Stats
-    total_videos = len(stats_df)
+
     sixty_day_videos = len(stats_df[stats_df['PublishedDate']>sixty_days_date])
     first_video = stats_df['PublishedDate'].min()
     last_video = stats_df['PublishedDate'].max()
 
-    channel_stats = {"total_videos": total_videos,
-                     "sixty_day_videos": sixty_day_videos,
-                     "first_video": first_video,
-                     "last_video": last_video,
-                     }
-    
-    title_description = {'engagement_score': "Most Engaged Video",
-                     'viewCount': "Most Viewed Video",                     
-                     'likeCount': "Most Liked Video",                     
-                     'commentCount': "Most Commented Video"}
+    channel_info = {"title": ch_stats['title'],
+                    "thumbnail": ch_stats['thumbnail'],
+                    "country": ch_stats['country'],
+                    "subscriberCount": fr"{ch_stats['subscriberCount']:,}",
+                    "total_views": fr"{ch_stats['viewCount']:,}",
+                    "total_videos": ch_stats['videoCount'],
+                    "sixty_day_videos": sixty_day_videos,
+                    "first_video": first_video,
+                    "last_video": last_video
+                    }
 
     for key in trivia_dict.keys():    
         custom_txt=fr"{trivia_dict[key][0]['viewCount']:,} views | {trivia_dict[key][0]['likeCount']:,} likes | {trivia_dict[key][0]['commentCount']:,} comments"
@@ -142,7 +168,7 @@ def get_trivia(stats):
                             "id":trivia_dict[key][0]['VideoId'],
                             "text":custom_txt, "scores":video_scores})
 
-    return videos_list, channel_stats, videos_by_time_list
+    return videos_list, channel_info, videos_by_time_list
 
 
 def run_analysis(vid:str = 'Ia8s0SCrp6Q'):
@@ -150,7 +176,8 @@ def run_analysis(vid:str = 'Ia8s0SCrp6Q'):
     channel_id = get_channel_id(vid)
     video_ids = get_all_video_ids(channel_id)
     video_stats = get_video_stats(video_ids)
-    trivia_dict = get_trivia(video_stats)
+    channel_stats = get_channel_stats(channel_id)
+    trivia_dict = get_trivia(video_stats, channel_stats)
 
     # print(trivia_dict)
     return trivia_dict

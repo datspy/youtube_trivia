@@ -22,18 +22,50 @@
 
         <!-- Right Tile: Text and Table -->
         <div class="tile right">
+            <div class="channel-card">
+                <img class="channel-thumbnail" src="{{ ch.thumbnail }}" alt="Channel Thumbnail">
+                <div class="channel-name">{{ ch.title }}</div>                
+            </div>
+            <br>
+            <br>
             <div class="d_container">
+                <div class="date-box">
+                    <p class="label">Total Subscribers</p>
+                    <hr>
+                    <p class="fldate">{{ ch.subscriberCount }}</p>
+                </div>
+                <div class="date-box">
+                    <p class="label">Total Views Accumulated</p>
+                    <hr>
+                    <p class="fldate">{{ ch.total_views }}</p>
+                </div>
+                <div class="date-box">
+                    <p class="label">Videos In Last 60 Days</p>
+                    <hr>
+                    <p class="fldate">{{ ch.sixty_day_videos }}</p>
+                </div>
+            </div>        
+            <br>            
+            <div class="d_container">                
                 <div class="date-box">
                     <p class="label">First Video On</p>
                     <hr>
-                    <p class="fldate">{{ f_date }}</p>
+                    <p class="fldate">{{ ch.first_video }}</p>
                 </div>
                 <div class="date-box">
                     <p class="label">Last Video On</p>
                     <hr>
-                    <p class="fldate">{{ l_date }}</p>
+                    <p class="fldate">{{ ch.last_video }}</p>
+                </div>
+                <div class="date-box">
+                    <p class="label">Total Videos</p>
+                    <hr>
+                    <p class="fldate">{{ ch.total_videos }}</p>
                 </div>
             </div>
+            <br>
+            <br> 
+            <br> 
             <table>
                 <thead>
                     <tr>

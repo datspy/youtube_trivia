@@ -139,7 +139,7 @@ body {
 
 .video-type {
     color: white;
-    background-color: rgb(171, 2, 2);
+    background-color: rgb(255, 0, 0);
     padding: 20px;
     border-radius: 12px;
     display: block;
@@ -155,14 +155,14 @@ body {
 .video-type::before {
     content: "";
     position: absolute;
-    left: 0px; /* Adjusts how far the arrow extends */
+    left: 5px; /* Adjusts how far the arrow extends */
     top: 50%;
     transform: translateY(-50%);
     width: 0;
     height: 0;
-    border-top: 30px solid transparent;
-    border-bottom: 30px solid transparent;
-    border-right: 50px solid white; /* Matches the background color */
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 24px solid white; /* Matches the background color */
 }
 
 
@@ -200,19 +200,42 @@ th {
     color: white;
 }
 
+.channel-card {
+    display: flex;
+    align-items: center;
+    background: rgb(255, 0, 0);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.channel-thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.channel-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
 /* Container */
 .d_container {
     display: flex;
-    gap: 20px;    
+    gap: 10px;    
     justify-content: center;
 }
 
 .date-box {
-    width: 250px;
-    padding: 20px;
+    width: 240px;
+    height: 120px;
+    padding: 8px;
     background: linear-gradient(145deg, #ffffff, #e6e6e6);
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.5);
-    border-radius: 15px;
+    border-radius: 10px;
     text-align: center;
     font-weight: bold;
     transition: 0.3s;
