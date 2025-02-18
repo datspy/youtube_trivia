@@ -32,7 +32,7 @@ def analysis(vid):
 	except googleapiclient.errors.HttpError as e:
 		if "quota" in str(e.reason):
 			error_msg = f"The API Quota has been exceeded for today!!\n" \
-						f"Please try again tomorrow!"
+				f"Please try again tomorrow!"
 			display_text = error_msg.split('\n')
 			flash(display_text)
 			return render_template("index.html")
