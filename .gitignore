@@ -3,4 +3,6 @@
 
 ### Test Files
 index_app.py
-*test_*.*
+/test*
+/static/test*
+/templates/test*
