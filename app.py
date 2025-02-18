@@ -1,4 +1,5 @@
 from flask import Flask, redirect, render_template, request, flash, url_for
+import googleapiclient.errors
 from analysis import run_analysis
 
 
@@ -25,9 +26,19 @@ def url_submit():
 @app.route("/<vid>")
 def analysis(vid):
 
-	trivia_list, ch_stats, videos_by_time_list =run_analysis(vid)	
-	
-	return render_template("display.html", videos=trivia_list, ch=ch_stats, table_data=videos_by_time_list)
+	try:
+		trivia_list, ch_stats, videos_by_time_list =run_analysis(vid)	
+		return render_template("display.html", videos=trivia_list, ch=ch_stats, table_data=videos_by_time_list)
+	except googleapiclient.errors.HttpError as e:
+		if "quota" in str(e.reason):
+			error_msg = f"The API Quota has been exceeded for today!!\n" \
+						f"Please try again tomorrow!"
+			display_text = error_msg.split('\n')
+			flash(display_text)
+			return render_template("index.html")
+		else:
+			flash(f"{e}")
+			return render_template("index.html")
 	
 
 if __name__ == "__main__":

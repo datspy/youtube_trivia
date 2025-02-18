@@ -10,10 +10,15 @@
             <button type="submit">Submit</button>            
         </form>
         <br>
-        {% for message in get_flashed_messages() %}
-            <p>{{ message }}</p>
-        {% endfor %}
-        <br>
+        {% with messages = get_flashed_messages()  %}
+            {% if messages %}        
+                {% for message in messages %}
+                    {% for line in message %}
+                        <p>{{ line }}<br></p>
+                    {% endfor %}                
+                {% endfor %}                
+            {% endif %}
+        {% endwith %}
     </div>
 </body>
 </html>

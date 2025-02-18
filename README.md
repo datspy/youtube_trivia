@@ -10,6 +10,3 @@ User input: YouTube video url.
 Output: Trivia and stats about the channel.
 
 <img src="images/Screenshot_two.png" align="center" height="350" width="600"/>
-
-
-
