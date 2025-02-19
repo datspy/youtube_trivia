@@ -18,7 +18,7 @@ def url_submit():
 				video_id = str(request.form["video_url"]).split('=')[1].split('&')[0]
 				return redirect(url_for("analysis", vid=video_id))
 			except:
-				flash(fr"This URL is invalid!!")
+				flash(fr"This URL is invalid!!", category="error")
 				return render_template("index.html")
 	else:
 		return render_template("index.html")		
@@ -34,11 +34,15 @@ def analysis(vid):
 			error_msg = f"The API Quota has been exceeded for today!!\n" \
 				f"Please try again tomorrow!"
 			display_text = error_msg.split('\n')
-			flash(display_text)
+			flash(display_text, category="api_error")
 			return render_template("index.html")
 		else:
-			flash(f"{e}")
+			flash(f"{e}", category="error")
 			return render_template("index.html")
+	except Exception as e:
+		flash(f"{e}", category="error")
+		return render_template("index.html")
+
 	
 
 if __name__ == "__main__":

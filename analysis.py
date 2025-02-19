@@ -21,43 +21,44 @@ def get_channel_id(vid):
         channel_id = response['items'][0]['snippet']['channelId']
         return channel_id
     except:
-        return False
+        return None
 
-
-def get_all_video_ids(channel_id):
-    """Fetch all video IDs from a given channel."""   
+### Fetch video-ids for the given channel-ID
+def get_all_video_ids(channel_id):    
     
     video_ids = []
     next_page_token = None
     
-    while True:
-        request = youtube.search().list(
-            part="id",
-            channelId=channel_id,
-            maxResults=50,  # Max limit per request
-            order="date",
-            type="video",
-            pageToken=next_page_token
-        )
-        response = request.execute()
-
-        # Extract video IDs
-        for item in response.get("items", []):
-            video_ids.append(item["id"]["videoId"])
-        
-        # Check if there are more pages
-        next_page_token = response.get("nextPageToken")
-        if not next_page_token:
-            break
+    try:
+        while True:
+            request = youtube.search().list(
+                part="id",
+                channelId=channel_id,
+                maxResults=50,  # Max limit per request
+                order="date",
+                type="video",
+                pageToken=next_page_token
+            )
+            response = request.execute()
+            
+            for item in response.get("items", []):
+                video_ids.append(item["id"]["videoId"])
+            
+            # Pagination
+            next_page_token = response.get("nextPageToken")
+            if not next_page_token:
+                break    
+        return video_ids
     
-    return video_ids
+    except:
+        return None
 
 
-def get_video_stats(video_ids):
-    """Fetch statistics for a list of video IDs."""    
+### Fetch video-specific statistics
+def get_video_stats(video_ids):      
 
     stats = {}
-    for i in range(0, len(video_ids), 50):  # API allows max 50 videos per request
+    for i in range(0, len(video_ids), 50): 
         request = youtube.videos().list(
             part="snippet,statistics",
             id=",".join(video_ids[i:i+50])
@@ -79,9 +80,8 @@ def get_video_stats(video_ids):
     
     return stats
 
-
-def get_channel_stats(channel_id):
-    """Fetch statistics for a Channel ID."""    
+### Fetch channel-specific statistics
+def get_channel_stats(channel_id):    
 
     request = youtube.channels().list(
             part="snippet,contentDetails,statistics",
@@ -100,7 +100,7 @@ def get_channel_stats(channel_id):
           
     return channel_stats
 
-
+### Consolidating stats to send back to app
 def get_trivia(vid_stats, ch_stats):
 
     sort_order = ['00:00 - 05:59','06:00 - 11:59','12:00 - 17:59','18:00 - 23:59']
@@ -173,14 +173,24 @@ def get_trivia(vid_stats, ch_stats):
 
 def run_analysis(vid:str = 'Ia8s0SCrp6Q'):
 
-    channel_id = get_channel_id(vid)
-    video_ids = get_all_video_ids(channel_id)
-    video_stats = get_video_stats(video_ids)
-    channel_stats = get_channel_stats(channel_id)
-    trivia_dict = get_trivia(video_stats, channel_stats)
+    ### video-id gets passed from app
+    ### The default value is to test analysis without running app.py
 
-    # print(trivia_dict)
-    return trivia_dict
+    channel_id = get_channel_id(vid)
+
+    if channel_id:
+        video_ids = get_all_video_ids(channel_id)
+        if video_ids:
+            video_stats = get_video_stats(video_ids)
+        else:
+            raise AttributeError("Could not fetch video statistics!!")
+    
+        channel_stats = get_channel_stats(channel_id)
+        trivia_dict = get_trivia(video_stats, channel_stats)
+
+        return trivia_dict
+    else:
+        raise AttributeError("Invalid Video-ID. Unable to fetch channel details!!")        
 
 
 if __name__ == "__main__":
