@@ -13,8 +13,8 @@
                         <!-- <h2>{{ video.title }}</h2> -->                        
                         <!-- <p class="stats">{{ video.views }} views • {{ video.likes }} likes • {{ video.comments }} comments</p> -->
                         <p class="stats">{{ video.text }}</p>                        
-                        <p class="stats">{{ video.scores }}</p>                        
-                        <p class="date">Published On: {{ video.PublishedDate }}</p>
+                        <h4 class="trivia-text">{{ video.trivia_text }}</h4>                        
+                        <p class="date">Published On: {{ video.PublishedDate }} | {{ video.scores }}</p>
                     </div>
                 </div>
             {% endfor %}

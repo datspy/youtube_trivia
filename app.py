@@ -27,7 +27,7 @@ def url_submit():
 def analysis(vid):
 
 	try:
-		trivia_list, ch_stats, videos_by_time_list =run_analysis(vid)	
+		flag, trivia_list, ch_stats, videos_by_time_list =run_analysis(vid)	
 		return render_template("display.html", videos=trivia_list, ch=ch_stats, table_data=videos_by_time_list)
 	except googleapiclient.errors.HttpError as e:
 		if "quota" in str(e.reason):

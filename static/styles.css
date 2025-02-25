@@ -165,7 +165,11 @@ body {
     border-right: 24px solid white; /* Matches the background color */
 }
 
-
+.trivia-text {
+    /* font-size: 18px; */
+    color: #023c7e;
+    /* margin: 5px 0; */
+}
 
 .stats {
     font-size: 17px;

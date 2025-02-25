@@ -104,11 +104,11 @@ def get_channel_stats(channel_id):
 def get_trivia(vid_stats, ch_stats):
 
     sort_order = ['00:00 - 05:59','06:00 - 11:59','12:00 - 17:59','18:00 - 23:59']
-    metrics = ['engagement_score','viewCount','likeCount','commentCount']
+    metrics = ['engagement_score','viewCount','like_view_ratio','comment_view_ratio']
     title_description = {'engagement_score': "Most Engaged Video",
                          'viewCount': "Most Viewed Video",
-                         'likeCount': "Most Liked Video",
-                         'commentCount': "Most Commented Video"
+                         'like_view_ratio': "Viewers Favourite",
+                         'comment_view_ratio': "Buzzing Comments Section"
                          }
     trivia_dict = {}
     videos_list = []
@@ -125,7 +125,7 @@ def get_trivia(vid_stats, ch_stats):
     stats_df['viewCount']=stats_df['viewCount'].replace("N/A",0).astype("uint32")
     stats_df['likeCount']=stats_df['likeCount'].replace("N/A",0).astype("uint32")
     stats_df['commentCount']=stats_df['commentCount'].replace("N/A",0).astype("uint32")
-    stats_df['comment_like_ratio']=np.divide(stats_df['commentCount'],stats_df['likeCount'])
+    stats_df['comment_view_ratio']=np.divide(stats_df['commentCount'],stats_df['viewCount'])
     stats_df['like_view_ratio']=np.divide(stats_df['likeCount'],stats_df['viewCount'])
     stats_df['engagement_score']=stats_df[['viewCount','likeCount','commentCount']].apply(lambda x: 0 if x['viewCount']==0 else round(((x['likeCount']+x['commentCount'])/x['viewCount'])*100,2), axis=1)
     stats_df['PublishedHourBin'] = pd.cut(stats_df['PublishedHour'],
@@ -133,11 +133,25 @@ def get_trivia(vid_stats, ch_stats):
                                           include_lowest=True,
                                           labels=['00:00 - 05:59','06:00 - 11:59','12:00 - 17:59','18:00 - 23:59'])
     
+    ### Publishing Window Stats
     videos_by_time = pd.DataFrame(stats_df['PublishedHourBin'].value_counts()).reset_index()
     videos_by_time.columns=['PublishedHourBin', 'counts']
     videos_by_time.index = pd.CategoricalIndex(videos_by_time['PublishedHourBin'],categories=sort_order,ordered=True)
     videos_by_time = videos_by_time.sort_index().reset_index(drop=True)
     videos_by_time_list = videos_by_time.values.tolist()
+
+    ### Trivia Messages
+    flag = (stats_df['likeCount'].sum()==0) | (stats_df['commentCount'].sum()==0) ## To Check If Video Has Enough Engagement        
+    prcntg_incr_engmnt = round(((stats_df['engagement_score'].max()-stats_df['engagement_score'].mean())/stats_df['engagement_score'].mean())*100)
+    prcntg_incr_vws = round(((stats_df['viewCount'].max()-stats_df['viewCount'].mean())/stats_df['viewCount'].mean())*100)
+    likes_per_mille = round(stats_df['like_view_ratio'].max()*1000)
+    comments_per_mille = round(stats_df['comment_view_ratio'].max()*1000)
+
+    trivia_description = {'engagement_score': f"This got {prcntg_incr_engmnt} % more engagement than the channel average",
+                         'viewCount': f"Woah!! {prcntg_incr_vws} % more views than the channel average",
+                         'like_view_ratio': f"Statistically, this video has {likes_per_mille} likes per 1K views!!",
+                         'comment_view_ratio': f"..and this has {comments_per_mille} comments per 1K views!!"
+                         }
     
     for metric in metrics:
         trivia_dict[metric] = stats_df.sort_values(by=[metric], ascending=False).head(1).to_dict('records')
@@ -166,9 +180,11 @@ def get_trivia(vid_stats, ch_stats):
                             "title":trivia_dict[key][0]['Title'],
                             "PublishedDate":trivia_dict[key][0]['PublishedDate'],
                             "id":trivia_dict[key][0]['VideoId'],
-                            "text":custom_txt, "scores":video_scores})
+                            "text":custom_txt, 
+                            "trivia_text": trivia_description.get(key, None),
+                            "scores":video_scores})
 
-    return videos_list, channel_info, videos_by_time_list
+    return flag, videos_list, channel_info, videos_by_time_list
 
 
 def run_analysis(vid:str = 'Ia8s0SCrp6Q'):
@@ -187,8 +203,10 @@ def run_analysis(vid:str = 'Ia8s0SCrp6Q'):
     
         channel_stats = get_channel_stats(channel_id)
         trivia_dict = get_trivia(video_stats, channel_stats)
-
-        return trivia_dict
+        if trivia_dict[0]:
+            raise AttributeError("Channel does not have enough content to run Analysis!!")
+        else:
+            return trivia_dict
     else:
         raise AttributeError("Invalid Video-ID. Unable to fetch channel details!!")        
 
