@@ -1,0 +1,114 @@
+[INFO] [2025-03-09 14:45:48,067] MainProcess [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[INFO] [2025-03-09 14:45:48,068] MainProcess [33mPress CTRL+C to quit[0m
+[INFO] [2025-03-09 14:45:48,072] MainProcess  * Restarting with stat
+[WARNING] [2025-03-09 14:45:49,173] MainProcess  * Debugger is active!
+[INFO] [2025-03-09 14:45:49,175] MainProcess  * Debugger PIN: 596-728-153
+[INFO] [2025-03-09 14:45:56,986] MainProcess 127.0.0.1 - - [09/Mar/2025 14:45:56] "GET / HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:45:57,420] MainProcess 127.0.0.1 - - [09/Mar/2025 14:45:57] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[INFO] [2025-03-09 14:45:57,426] MainProcess 127.0.0.1 - - [09/Mar/2025 14:45:57] "[36mGET /static/background.jpg HTTP/1.1[0m" 304 -
+[WARNING] [2025-03-09 14:46:02,403] MainProcess URL: adfwert
+[ERROR] [2025-03-09 14:46:02,404] MainProcess This URL is invalid!!
+[INFO] [2025-03-09 14:46:02,404] MainProcess 127.0.0.1 - - [09/Mar/2025 14:46:02] "POST /submit HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:46:02,669] MainProcess 127.0.0.1 - - [09/Mar/2025 14:46:02] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[WARNING] [2025-03-09 14:46:09,856] MainProcess URL: https://www.youtube.com/watch?v=ezn08
+[WARNING] [2025-03-09 14:46:09,856] MainProcess VideoID: ezn08
+[INFO] [2025-03-09 14:46:09,857] MainProcess 127.0.0.1 - - [09/Mar/2025 14:46:09] "[32mPOST /submit HTTP/1.1[0m" 302 -
+[ERROR] [2025-03-09 14:46:10,334] MainProcess Invalid Video-ID. Unable to fetch channel details!!
+[INFO] [2025-03-09 14:46:10,335] MainProcess 127.0.0.1 - - [09/Mar/2025 14:46:10] "GET /stats/ezn08 HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:46:10,440] MainProcess 127.0.0.1 - - [09/Mar/2025 14:46:10] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[ERROR] [2025-03-09 14:46:18,893] MainProcess Invalid Video-ID. Unable to fetch channel details!!
+[INFO] [2025-03-09 14:46:18,894] MainProcess 127.0.0.1 - - [09/Mar/2025 14:46:18] "POST /stats/submit HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:46:19,250] MainProcess 127.0.0.1 - - [09/Mar/2025 14:46:19] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[ERROR] [2025-03-09 14:46:29,580] MainProcess Invalid Video-ID. Unable to fetch channel details!!
+[INFO] [2025-03-09 14:46:29,581] MainProcess 127.0.0.1 - - [09/Mar/2025 14:46:29] "POST /stats/submit HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:46:29,908] MainProcess 127.0.0.1 - - [09/Mar/2025 14:46:29] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[INFO] [2025-03-09 14:48:22,692] MainProcess  * Detected change in 'D:\\Workspace\\GitHub\\youtube_trivia_app\\app.py', reloading
+[INFO] [2025-03-09 14:48:22,788] MainProcess  * Restarting with stat
+[WARNING] [2025-03-09 14:48:23,816] MainProcess  * Debugger is active!
+[INFO] [2025-03-09 14:48:23,818] MainProcess  * Debugger PIN: 596-728-153
+[INFO] [2025-03-09 14:48:28,506] MainProcess [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[INFO] [2025-03-09 14:48:28,506] MainProcess [33mPress CTRL+C to quit[0m
+[INFO] [2025-03-09 14:48:28,507] MainProcess  * Restarting with stat
+[WARNING] [2025-03-09 14:48:29,433] MainProcess  * Debugger is active!
+[INFO] [2025-03-09 14:48:29,435] MainProcess  * Debugger PIN: 596-728-153
+[INFO] [2025-03-09 14:48:36,525] MainProcess 127.0.0.1 - - [09/Mar/2025 14:48:36] "GET / HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:48:36,905] MainProcess 127.0.0.1 - - [09/Mar/2025 14:48:36] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[INFO] [2025-03-09 14:48:36,921] MainProcess 127.0.0.1 - - [09/Mar/2025 14:48:36] "[36mGET /static/background.jpg HTTP/1.1[0m" 304 -
+[WARNING] [2025-03-09 14:48:46,070] MainProcess URL: https://www.youtube.com/watch?v=ezn08
+[WARNING] [2025-03-09 14:48:46,070] MainProcess VideoID: ezn08
+[INFO] [2025-03-09 14:48:46,070] MainProcess 127.0.0.1 - - [09/Mar/2025 14:48:46] "[32mPOST /submit HTTP/1.1[0m" 302 -
+[ERROR] [2025-03-09 14:48:46,513] MainProcess Invalid Video-ID. Unable to fetch channel details!!
+[INFO] [2025-03-09 14:48:46,517] MainProcess 127.0.0.1 - - [09/Mar/2025 14:48:46] "[32mGET /stats/ezn08 HTTP/1.1[0m" 302 -
+[INFO] [2025-03-09 14:48:46,641] MainProcess 127.0.0.1 - - [09/Mar/2025 14:48:46] "GET / HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:48:46,828] MainProcess 127.0.0.1 - - [09/Mar/2025 14:48:46] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[WARNING] [2025-03-09 14:48:52,687] MainProcess URL: https://www.youtube.com/watch?v=eL2wBhBzn08
+[WARNING] [2025-03-09 14:48:52,687] MainProcess VideoID: eL2wBhBzn08
+[INFO] [2025-03-09 14:48:52,688] MainProcess 127.0.0.1 - - [09/Mar/2025 14:48:52] "[32mPOST /submit HTTP/1.1[0m" 302 -
+[INFO] [2025-03-09 14:48:53,521] MainProcess 127.0.0.1 - - [09/Mar/2025 14:48:53] "GET /stats/eL2wBhBzn08 HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:48:53,561] MainProcess 127.0.0.1 - - [09/Mar/2025 14:48:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[INFO] [2025-03-09 14:48:53,902] MainProcess 127.0.0.1 - - [09/Mar/2025 14:48:53] "[36mGET /static/background.jpg HTTP/1.1[0m" 304 -
+[INFO] [2025-03-09 14:49:03,636] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:03] "GET / HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:49:03,887] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:03] "GET /static/styles.css HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:49:04,022] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:04] "GET /static/background.jpg HTTP/1.1" 200 -
+[WARNING] [2025-03-09 14:49:07,467] MainProcess URL: asdfer
+[ERROR] [2025-03-09 14:49:07,467] MainProcess This URL is invalid!!
+[INFO] [2025-03-09 14:49:07,468] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:07] "POST /submit HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:49:07,819] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:07] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[WARNING] [2025-03-09 14:49:12,316] MainProcess URL: https://www.youtube.com/watch?v=ezn08
+[WARNING] [2025-03-09 14:49:12,316] MainProcess VideoID: ezn08
+[INFO] [2025-03-09 14:49:12,317] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:12] "[32mPOST /submit HTTP/1.1[0m" 302 -
+[ERROR] [2025-03-09 14:49:12,700] MainProcess Invalid Video-ID. Unable to fetch channel details!!
+[INFO] [2025-03-09 14:49:12,700] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:12] "[32mGET /stats/ezn08 HTTP/1.1[0m" 302 -
+[INFO] [2025-03-09 14:49:12,887] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:12] "GET / HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:49:13,013] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:13] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[WARNING] [2025-03-09 14:49:32,706] MainProcess URL: https://www.youtube.com/watch?v=BhBzn08
+[WARNING] [2025-03-09 14:49:32,708] MainProcess VideoID: BhBzn08
+[INFO] [2025-03-09 14:49:32,708] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:32] "[32mPOST /submit HTTP/1.1[0m" 302 -
+[ERROR] [2025-03-09 14:49:33,081] MainProcess Invalid Video-ID. Unable to fetch channel details!!
+[INFO] [2025-03-09 14:49:33,082] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:33] "[32mGET /stats/BhBzn08 HTTP/1.1[0m" 302 -
+[INFO] [2025-03-09 14:49:33,282] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:33] "GET / HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:49:33,408] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:33] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[WARNING] [2025-03-09 14:49:40,047] MainProcess URL: https://www.youtube.com/watch?v=eL2wBhBzn08
+[WARNING] [2025-03-09 14:49:40,048] MainProcess VideoID: eL2wBhBzn08
+[INFO] [2025-03-09 14:49:40,048] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:40] "[32mPOST /submit HTTP/1.1[0m" 302 -
+[INFO] [2025-03-09 14:49:40,744] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:40] "GET /stats/eL2wBhBzn08 HTTP/1.1" 200 -
+[INFO] [2025-03-09 14:49:40,778] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:40] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[INFO] [2025-03-09 14:49:41,115] MainProcess 127.0.0.1 - - [09/Mar/2025 14:49:41] "[36mGET /static/background.jpg HTTP/1.1[0m" 304 -
+[INFO] [2025-03-09 15:46:33,869] MainProcess  * Detected change in 'D:\\Workspace\\GitHub\\youtube_trivia_app\\app.py', reloading
+[INFO] [2025-03-09 15:46:33,998] MainProcess  * Restarting with stat
+[WARNING] [2025-03-09 15:46:34,913] MainProcess  * Debugger is active!
+[INFO] [2025-03-09 15:46:34,915] MainProcess  * Debugger PIN: 596-728-153
+[INFO] [2025-03-09 15:48:44,533] MainProcess [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[INFO] [2025-03-09 15:48:44,533] MainProcess [33mPress CTRL+C to quit[0m
+[INFO] [2025-03-09 15:48:44,535] MainProcess  * Restarting with stat
+[WARNING] [2025-03-09 15:48:45,325] MainProcess  * Debugger is active!
+[INFO] [2025-03-09 15:48:45,327] MainProcess  * Debugger PIN: 596-728-153
+[INFO] [2025-03-09 15:48:49,623] MainProcess 127.0.0.1 - - [09/Mar/2025 15:48:49] "GET / HTTP/1.1" 200 -
+[INFO] [2025-03-09 15:48:49,984] MainProcess 127.0.0.1 - - [09/Mar/2025 15:48:49] "GET /static/styles.css HTTP/1.1" 200 -
+[INFO] [2025-03-09 15:48:49,992] MainProcess 127.0.0.1 - - [09/Mar/2025 15:48:49] "GET /static/background.jpg HTTP/1.1" 200 -
+[INFO] [2025-03-09 15:48:50,313] MainProcess 127.0.0.1 - - [09/Mar/2025 15:48:50] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[WARNING] [2025-03-09 15:48:59,306] MainProcess URL: https://www.youtube.com/watch?v=eL2wBhBzn08
+[WARNING] [2025-03-09 15:48:59,306] MainProcess VideoID: eL2wBhBzn08
+[INFO] [2025-03-09 15:48:59,306] MainProcess 127.0.0.1 - - [09/Mar/2025 15:48:59] "[32mPOST /submit HTTP/1.1[0m" 302 -
+[INFO] [2025-03-09 15:49:00,138] MainProcess 127.0.0.1 - - [09/Mar/2025 15:49:00] "GET /stats/eL2wBhBzn08 HTTP/1.1" 200 -
+[INFO] [2025-03-09 15:49:00,179] MainProcess 127.0.0.1 - - [09/Mar/2025 15:49:00] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[INFO] [2025-03-09 15:49:00,526] MainProcess 127.0.0.1 - - [09/Mar/2025 15:49:00] "[36mGET /static/background.jpg HTTP/1.1[0m" 304 -
+[INFO] [2025-03-09 21:24:23,717] MainProcess [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[INFO] [2025-03-09 21:24:23,717] MainProcess [33mPress CTRL+C to quit[0m
+[INFO] [2025-03-09 21:24:23,718] MainProcess  * Restarting with stat
+[WARNING] [2025-03-09 21:24:24,479] MainProcess  * Debugger is active!
+[INFO] [2025-03-09 21:24:24,481] MainProcess  * Debugger PIN: 596-728-153
+[INFO] [2025-03-09 21:24:30,224] MainProcess 127.0.0.1 - - [09/Mar/2025 21:24:30] "GET / HTTP/1.1" 200 -
+[INFO] [2025-03-09 21:24:30,608] MainProcess 127.0.0.1 - - [09/Mar/2025 21:24:30] "GET /static/styles.css HTTP/1.1" 200 -
+[INFO] [2025-03-09 21:24:30,634] MainProcess 127.0.0.1 - - [09/Mar/2025 21:24:30] "GET /static/background.jpg HTTP/1.1" 200 -
+[WARNING] [2025-03-09 21:24:38,325] MainProcess URL: https://www.youtube.com/watch?v=eL2wBhBzn08
+[WARNING] [2025-03-09 21:24:38,325] MainProcess VideoID: eL2wBhBzn08
+[INFO] [2025-03-09 21:24:38,325] MainProcess 127.0.0.1 - - [09/Mar/2025 21:24:38] "[32mPOST /submit HTTP/1.1[0m" 302 -
+[INFO] [2025-03-09 21:24:39,277] MainProcess 127.0.0.1 - - [09/Mar/2025 21:24:39] "GET /stats/eL2wBhBzn08 HTTP/1.1" 200 -
+[INFO] [2025-03-09 21:24:39,307] MainProcess 127.0.0.1 - - [09/Mar/2025 21:24:39] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+[INFO] [2025-03-09 21:24:39,644] MainProcess 127.0.0.1 - - [09/Mar/2025 21:24:39] "[36mGET /static/background.jpg HTTP/1.1[0m" 304 -
+[INFO] [2025-03-09 21:24:53,472] MainProcess 127.0.0.1 - - [09/Mar/2025 21:24:53] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -

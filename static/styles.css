@@ -124,19 +124,6 @@ body {
     color: #333;
 }
 
-/* .video-type {
-    color: white;
-    background-color: rgb(192, 14, 23);
-    padding: 15px 60px;
-    border-radius: 12px;
-    width: 200px;
-    display: inline-block;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-} */
-
-
 .video-type {
     color: white;
     background-color: rgb(255, 0, 0);
@@ -148,10 +135,9 @@ body {
     font-weight: bold;
     margin: 20px auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    position: relative; /* Needed for the arrow positioning */
+    position: relative; /* Arrow positioning */
 }
 
-/* Creating the subtle left arrow */
 .video-type::before {
     content: "";
     position: absolute;

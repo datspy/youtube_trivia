@@ -141,7 +141,7 @@ def get_trivia(vid_stats, ch_stats):
     videos_by_time_list = videos_by_time.values.tolist()
 
     ### Trivia Messages
-    flag = (stats_df['likeCount'].sum()==0) | (stats_df['commentCount'].sum()==0) ## To Check If Video Has Enough Engagement        
+    engagement_flag = (stats_df['likeCount'].sum()==0) | (stats_df['commentCount'].sum()==0) ## To Check If Video Has Enough Engagement        
     prcntg_incr_engmnt = round(((stats_df['engagement_score'].max()-stats_df['engagement_score'].mean())/stats_df['engagement_score'].mean())*100)
     prcntg_incr_vws = round(((stats_df['viewCount'].max()-stats_df['viewCount'].mean())/stats_df['viewCount'].mean())*100)
     likes_per_mille = round(stats_df['like_view_ratio'].max()*1000)
@@ -184,7 +184,7 @@ def get_trivia(vid_stats, ch_stats):
                             "trivia_text": trivia_description.get(key, None),
                             "scores":video_scores})
 
-    return flag, videos_list, channel_info, videos_by_time_list
+    return engagement_flag, videos_list, channel_info, videos_by_time_list
 
 
 def run_analysis(vid:str = 'Ia8s0SCrp6Q'):
@@ -208,11 +208,9 @@ def run_analysis(vid:str = 'Ia8s0SCrp6Q'):
         else:
             return trivia_dict
     else:
-        raise AttributeError("Invalid Video-ID. Unable to fetch channel details!!")        
+        raise AttributeError("Invalid Video-ID. Unable to fetch channel details!!")
 
 
 if __name__ == "__main__":
 
     run_analysis()
-
-    

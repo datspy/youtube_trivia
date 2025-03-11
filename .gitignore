@@ -1,6 +1,9 @@
 ### Credentials
 .env
 
+### LogFiles
+.log
+
 ### Test Files
 index_app.py
 /test*
