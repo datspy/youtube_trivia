@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, request, flash, url_for
 import logging
-from logging.config import dictConfig
+import logging.config
+import os
 import googleapiclient.errors
 from analysis import run_analysis
 
@@ -9,30 +10,31 @@ app = Flask(__name__)
 app.secret_key = "flash_message_key"
 display_flag=False
 
+BASE_DIR = os.getcwd()
+LOGS_DIR = os.path.join(BASE_DIR, 'logs')
+
+logConfig = {"version": 1,
+			 "formatters": {
+				 "default": {
+					 "format": "[%(levelname)s] [%(asctime)s] %(processName)s %(message)s",
+					 }
+					 },
+			"handlers": {
+				"file": {
+					"class": "logging.handlers.RotatingFileHandler",
+					"filename": f"{LOGS_DIR}/app.log",
+					"maxBytes": 100000000,
+					"backupCount": 3,
+					"formatter": "default",
+					},
+					},
+			"root": {"level": "INFO", "handlers": ["file"]},
+			}
+
+
+logging.config.dictConfig(logConfig)
 logger = logging.getLogger("root")
 logger.setLevel(logging.WARNING)
-
-
-dictConfig(
-	{
-        "version": 1,
-		"formatters": {
-            "default": {
-                "format": "[%(levelname)s] [%(asctime)s] %(processName)s %(message)s",
-            }
-        },    
-        "handlers": {
-            "file": {
-                "class": "logging.handlers.RotatingFileHandler",
-                "filename": "logs/app.log",
-                "maxBytes": 100000000,
-                "backupCount": 3,
-                "formatter": "default",
-            },
-        },
-        "root": {"level": "INFO", "handlers": ["file"]},
-    }
-)
 
 
 @app.route("/")

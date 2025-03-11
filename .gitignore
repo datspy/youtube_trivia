@@ -2,7 +2,7 @@
 .env
 
 ### LogFiles
-.log
+/logs/*.log
 
 ### Test Files
 index_app.py
