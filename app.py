@@ -6,37 +6,41 @@ import googleapiclient.errors
 from analysis import run_analysis
 
 
+### App Configuration
 app = Flask(__name__)
 app.secret_key = "flash_message_key"
 display_flag=False
 
+
+### Logging Configuration
 BASE_DIR = os.getcwd()
-LOGS_DIR = os.path.join(BASE_DIR, 'logs')
+LOG_FILE = os.path.join(BASE_DIR, 'logs','app.log')
 
 logConfig = {"version": 1,
 			 "formatters": {
 				 "default": {
 					 "format": "[%(levelname)s] [%(asctime)s] %(processName)s %(message)s",
+					  "datefmt":"%Y-%m-%dT%H:%M:%S",
 					 }
 					 },
 			"handlers": {
 				"file": {
 					"class": "logging.handlers.RotatingFileHandler",
-					"filename": f"{LOGS_DIR}/app.log",
-					"maxBytes": 100000000,
+					"filename": f"{LOG_FILE}",
+					"maxBytes": (1024 * 1024 * 10),
 					"backupCount": 3,
 					"formatter": "default",
 					},
 					},
-			"root": {"level": "INFO", "handlers": ["file"]},
+			"root": {"level": "WARNING", "handlers": ["file"]},
 			}
-
 
 logging.config.dictConfig(logConfig)
 logger = logging.getLogger("root")
 logger.setLevel(logging.WARNING)
 
 
+### Actual Code
 @app.route("/")
 def index():	
 
