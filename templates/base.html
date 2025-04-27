@@ -2,8 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">  -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">   
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        @media screen and (max-width: 2559px) {
+            body {
+                zoom: 0.8; /* 80% zoom for smaller screens */
+                /* -moz-transform: scale(0.8); */
+                /* -moz-transform-origin: top left; */
+            }
+        }
+        
+        @media screen and (min-width: 2560px) {
+            body {
+                zoom: 0.9; /* 100% zoom for larger screens */
+                /* -moz-transform: scale(1.0); */
+                /* -moz-transform-origin: top left; */
+            }
+        }
+    </style>
     {% block head %}{% endblock %}
 </head>
 <body>

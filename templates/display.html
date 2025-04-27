@@ -2,6 +2,11 @@
 
 {% block body %}
 <body class="stats-page">
+    <div class="home-button-container">
+        <a href="/" class="home-button">            
+            <span class="home-text">Home</span>
+        </a>
+    </div>
     <div class="container">
         <!-- Left Tile: YouTube Thumbnails and Metadata -->
         <div class="tile left">
@@ -64,6 +69,12 @@
                 </div>
             </div>
             <br>
+            <div class="d_container">
+                <div class="trivia-text-box">
+                    <p class="tt-text">{{ ch.watch_days }}</p>
+                    <p class="tt-text">{{ ch.consistency_msg }}</p>
+                </div>
+            </div>
             <br> 
             <br> 
             <table>

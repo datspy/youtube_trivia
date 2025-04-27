@@ -53,8 +53,13 @@ def url_submit():
 	if request.method == "POST":
 			try:
 				vurl = str(request.form["video_url"])
-				logger.warning(f"URL: {vurl}")
-				video_id = vurl.split('=')[1].split('&')[0]
+				logger.warning(f"URL: {vurl}")				
+				if vurl.rfind('youtu.be')>0:
+					video_id = vurl.split('/')[3].split('?')[0]
+				elif vurl.rfind('youtube')>0:
+					video_id = vurl.split('=')[1].split('&')[0]
+				else:
+					raise IndexError
 				logger.warning(f"VideoID: {video_id}")
 				return redirect(url_for("stats", vid=video_id))			
 			except:

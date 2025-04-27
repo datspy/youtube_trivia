@@ -80,6 +80,38 @@ body {
     gap: 20px;
 }
 
+/* Home Button Styling */
+.home-button-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.home-button {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 0, 0, 0.9);
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.home-button:hover {
+    background: #cc0000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.home-text {
+    font-size: 16px;
+}
+
+
 /* Tiles */
 .tile {
     background: white;
@@ -186,7 +218,7 @@ th, td {
 }
 
 th {
-    background-color: #007BFF;
+    background-color: #cc0000;
     color: white;
 }
 
@@ -231,10 +263,30 @@ th {
     transition: 0.3s;
 }
 
+.trivia-text-box {
+    width: 900px;
+    height: 170px;
+    padding: 8px;
+    background: linear-gradient(145deg,#000000, #c60000);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    text-align: justify;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
 /* Label */
 .label {
     font-size: 18px;
     color: #333;
+}
+
+.tt-text {
+    font-size: 20px;
+    font-family:'Bahnschrift';
+    display: inline-block;
+    vertical-align: middle;    
+    color: #ffffff;
 }
 
 /* Separator */
