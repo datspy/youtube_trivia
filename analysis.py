@@ -2,8 +2,6 @@ import os
 from googleapiclient.discovery import build
 import pandas as pd
 import numpy as np
-import isodate
-import pandas as pd
 from dotenv import load_dotenv
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
@@ -67,6 +65,30 @@ def consistency_statement(gap, activity_months):
         stmt = fr"...Consistency?! Not so consistent!! They have not posted any videos for {diff} months in between their first and last video."
     
     return stmt   
+
+def get_isosplit(s, split):
+    if split in s:
+        n, s = s.split(split)
+    else:
+        n = 0
+    return n, s
+
+
+def parse_isoduration(s):
+        
+    # Remove prefix
+    s = s.split('P')[-1]
+    
+    # Step through letter dividers
+    days, s = get_isosplit(s, 'D')
+    _, s = get_isosplit(s, 'T')
+    hours, s = get_isosplit(s, 'H')
+    minutes, s = get_isosplit(s, 'M')
+    seconds, s = get_isosplit(s, 'S')
+
+    # Convert all to seconds
+    dt = timedelta(days=int(days), hours=int(hours), minutes=int(minutes), seconds=int(seconds))
+    return int(dt.total_seconds())
 
 
 def get_channel_id(vid):
@@ -187,7 +209,7 @@ def get_trivia(vid_stats, ch_stats):
     stats_df['comment_view_ratio']=np.divide(stats_df['commentCount'],stats_df['viewCount'])
     stats_df['like_view_ratio']=np.divide(stats_df['likeCount'],stats_df['viewCount'])
     stats_df['engagement_score']=stats_df[['viewCount','likeCount','commentCount']].apply(lambda x: 0 if x['viewCount']==0 else round(((x['likeCount']+x['commentCount'])/x['viewCount'])*100,2), axis=1)
-    stats_df['duration_secs']=stats_df["duration"].apply(lambda x: isodate.parse_duration(x).total_seconds())
+    stats_df['duration_secs']=stats_df["duration"].apply(lambda x: parse_isoduration(x))
     stats_df['PublishedMonth']=pd.to_datetime(stats_df['PublishedDate']).dt.strftime('%b-%Y')
     stats_df['PublishedHourBin'] = pd.cut(stats_df['PublishedHour'],
                                           bins=[0,6,12,18,24],
