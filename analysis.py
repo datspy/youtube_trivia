@@ -76,8 +76,11 @@ def get_isosplit(s, split):
 
 def parse_isoduration(s):
         
-    # Remove prefix
-    s = s.split('P')[-1]
+    # Remove prefix    
+    try:
+        s = s.split('P')[-1]
+    except:
+        s = 'PT0S'
     
     # Step through letter dividers
     days, s = get_isosplit(s, 'D')
@@ -86,15 +89,20 @@ def parse_isoduration(s):
     minutes, s = get_isosplit(s, 'M')
     seconds, s = get_isosplit(s, 'S')
 
-    # Convert all to seconds
-    dt = timedelta(days=int(days), hours=int(hours), minutes=int(minutes), seconds=int(seconds))
+    # Convert all to seconds    
+    dt = timedelta(days=int(days), hours=int(hours), minutes=int(minutes), seconds=int(seconds))  
+
     return int(dt.total_seconds())
 
 
-def get_channel_id(vid):
+def get_channel_id(vid, channel):
 
     try:
-        request = youtube.videos().list(part="statistics,snippet",id=vid)
+        if channel:
+            request = youtube.search().list(part='snippet',q=vid,type='channel',maxResults=1)        
+        else:
+            request = youtube.videos().list(part="statistics,snippet",id=vid)
+
         response = request.execute()
         channel_id = response['items'][0]['snippet']['channelId']
         return channel_id
@@ -279,12 +287,12 @@ def get_trivia(vid_stats, ch_stats):
     return engagement_flag, videos_list, channel_info, videos_by_time_list
 
 
-def run_analysis(vid:str = 'Ia8s0SCrp6Q'):
+def run_analysis(uid:str = 'Ia8s0SCrp6Q', channel:bool =False):
 
     ### video-id gets passed from app
     ### The default value is to test analysis without running app.py
-
-    channel_id = get_channel_id(vid)
+    
+    channel_id = get_channel_id(uid, channel)
 
     if channel_id:
         video_ids = get_all_video_ids(channel_id)

@@ -51,17 +51,21 @@ def index():
 def url_submit():	
 	
 	if request.method == "POST":
+			c_flag = False
 			try:
 				vurl = str(request.form["video_url"])
 				logger.warning(f"URL: {vurl}")				
 				if vurl.rfind('youtu.be')>0:
 					video_id = vurl.split('/')[3].split('?')[0]
+				elif vurl.rfind('@')>0:
+					video_id = vurl.split('/')[3].split('@')[1]
+					c_flag = True
 				elif vurl.rfind('youtube')>0:
 					video_id = vurl.split('=')[1].split('&')[0]
 				else:
 					raise IndexError
 				logger.warning(f"VideoID: {video_id}")
-				return redirect(url_for("stats", vid=video_id))			
+				return redirect(url_for("stats", vid=video_id, channel=c_flag))			
 			except:
 				flash(fr"This URL is invalid!!", category="error")
 				logger.error("This URL is invalid!!")
@@ -70,11 +74,12 @@ def url_submit():
 		return render_template("index.html")
 
 
-@app.route("/stats/<vid>", methods=['POST', 'GET'])
-def stats(vid):
-
+@app.route("/stats/<vid>/<channel>", methods=['POST', 'GET'])
+def stats(vid, channel):
+		
+		channel = channel.lower() == 'true'
 		try:								
-			low_engagement, trivia_list, ch_stats, videos_by_time_list =run_analysis(vid)
+			low_engagement, trivia_list, ch_stats, videos_by_time_list =run_analysis(vid, channel)
 			if low_engagement:
 				logger.error("Channel Does Not Have Enough Engagement For Analysis!")
 				flash("Channel Does Not Have Enough Engagement For Analysis!", category="error")
@@ -95,8 +100,8 @@ def stats(vid):
 		except Exception as e:
 			logger.error(f"{e}")
 			flash(f"{e}", category="error")			
-			return redirect(url_for("index"))	
-			
+			return redirect(url_for("index"))
+		
 
 if __name__ == "__main__":
 	
